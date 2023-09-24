@@ -1,50 +1,42 @@
-# Project Name
 
-Fantastic Restaurants and Where to find them.
+## *Project Name*
 
+*Job Search Portal*
 ## Table of Contents
 
-- [Frameworks and Language Used](#frameworks-and-language-used)
-- [Dataflow](#dataflow)
-- [Data Structure](#data-structure)
-- [Project Summary](#project-summary)
+- **[Frameworks and Language Used](#frameworks-and-language-used)**
+- **[Dataflow](#dataflow)**
+- **[Data Structure](#data-structure)**
+- **[Project Summary](#project-summary)**
 
-## Frameworks and Language Used
+Frameworks and Languages Used:
 
-- **Java**: The primary programming language used for developing the application.
-- **Maven**: A build automation tool and dependency management tool used for managing the project's dependencies and building the application.
-- **Spring Boot**: A framework built on top of the Spring framework, providing rapid application development features for creating stand-alone, production-grade Spring-based applications.
-- **Lombok**: A Java library that helps reduce boilerplate code by providing annotations to automatically generate getters, setters, constructors, and other utility methods.
+- Spring Boot: A powerful and widely-used Java framework for building robust and scalable web applications.
+- Java: The primary programming language used in the project for writing backend code.
+- H2 Database: An in-memory database used for storing job-related data.
+- Maven: A build automation tool used for managing project dependencies and building the application.
+- Postman: Used for testing the APIs and interacting with the backend.
 
-## Dataflow
+Data Flow and Functions:
 
-The Api follows the following data flow:
+The Job Search Portal application follows a layered architecture consisting of the following components:
 
-1. **Client Interaction**: The client, such as Postman, sends requests to the Localhost server for  operations, including creating, reading, updating, and deleting users (CRUD operations).
+- Controller: The JobController class handles incoming HTTP requests and maps them to specific service methods based on the requested endpoints. It is responsible for interacting with the client and returning appropriate responses.
 
-2. **Controller Layer**: In the Spring Boot application, the incoming requests are handled by the Controller layer. The Controller receives the requests and delegates them to the appropriate methods in the service layer.
+- Service: The JobService class contains business logic for processing the incoming requests from the controller. It acts as an intermediary between the controller and the repository, providing various CRUD operations and custom search functionalities.
 
-3. **Service Layer**: The Service layer contains the business logic of the application and handles the operations. When a request is received from the Controller, the Service layer performs the necessary actions. For example, when creating a new Restaurant, the Service layer validates the input data, generates a unique identifier, and interacts with the data access layer.
+- Repository: The JobRepository interface extends CrudRepository from Spring Data JPA and provides default CRUD operations. Additionally, it includes custom finder methods for searching jobs by title, description, salary, company name, employer name, and location using Spring Data JPA query annotations.
 
-4. **Data Access Layer**: The Data Access layer is responsible for interacting with the underlying data storage, such as the RestaurantRepository. In the Project, it handles CRUD operations on the user data. When creating a new user, the Data Access layer inserts the user's information into the database.
+- Database Design: The project uses the H2 Database, an in-memory relational database. The Job entity represents a job listing with various attributes such as title, description, location, salary, companyEmail, companyName, employerName, jobType, and appliedDate.
 
-5. **Database**: The database stores the user data. It receives the insert, update, or delete statements from the Data Access layer.
-This is done using hashmap.
+Data Structure Used:
 
-6. **Response**: After the data operation is completed, the response flows back through the layers in the reverse order. The Service layer receives the response from the Data Access layer, performs any necessary post-processing or formatting, and sends it back to the Controller.
+The project uses a relational database with tables for storing job data. The database design is based on the Job entity attributes, with each attribute corresponding to a column in the table. The primary key is the id field, which uniquely identifies each job entry.
 
-7. **Controller Response**: The Controller layer receives the response from the Service layer and returns an appropriate HTTP response to the client, indicating the success or failure of the requested operation.
+Project Summary:
 
-## Data Structure
+The Job Search Portal is a Spring Boot application that provides RESTful APIs to perform CRUD operations on job listings. It allows users to create new job listings, view job details by ID, update existing job listings, and delete job listings. Additionally, users can perform various custom searches, such as searching by job title, description, salary, company name, employer name, and location.
 
-1.  **HashMap**  : This is used for as a DataBase and stores the User InforMation in form of User class.
+The application follows a layered architecture, promoting separation of concerns. The controller handles incoming HTTP requests, the service contains the business logic, and the repository manages the interaction with the database. The project uses H2 Database for data storage, making it easy to set up and run locally.
 
-2. **ArrayList** : ArrayList or list are used in methods for ease of code . They are used for returning or getting data .
-
-## Project Summary
-
-The Project is used as a simple Restaurant Listing api and helps store access or create Restaurant information . 
-
-## Installation and Usage
-
-Run code using an ide and check workings on poostman.
+The Job Search Portal provides a simple and effective way for users to manage job listings and search for relevant opportunities based on different criteria. It can be extended and customized further to meet specific requirements of a job portal application.
